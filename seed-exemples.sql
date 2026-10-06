@@ -1,0 +1,31 @@
+-- MAXI MARKET : 9 ensembles EXEMPLES (à remplacer par tes vrais produits).
+-- À coller dans Supabase > SQL Editor APRÈS schema.sql. Les prix sont ceux demandés, sans promotion.
+
+insert into public.products (slug, name, category, price, description, composition, care, sizes, colors, featured, sort_order) values
+('ensemble-jogging-gris-chine', 'Ensemble jogging gris chiné', 'Ensembles', 70.00,
+ 'Sweat à capuche et pantalon de jogging assortis, coupe décontractée, intérieur doux.',
+ '80 % coton, 20 % polyester', 'Lavage en machine à 30 °C, ne pas sécher en tambour.', '{S,M,L,XL}', '{Gris chiné,Noir}', true, 1),
+('ensemble-polo-lin-sable', 'Ensemble polo et short en lin', 'Ensembles', 74.50,
+ 'Polo manches courtes et short assortis, tissu léger pour les beaux jours.',
+ '55 % lin, 45 % coton', 'Lavage en machine à 30 °C, repassage à température moyenne.', '{S,M,L,XL}', '{Sable,Blanc}', true, 2),
+('ensemble-chemise-pantalon-bleu', 'Ensemble chemise et pantalon fluide', 'Ensembles', 79.50,
+ 'Chemise à manches longues et pantalon fluide assortis, une tenue complète en un geste.',
+ '100 % viscose', 'Lavage délicat à 30 °C, repassage doux.', '{S,M,L,XL}', '{Bleu nuit,Vert sauge}', true, 3),
+('ensemble-sweat-noir', 'Ensemble sweat col rond', 'Ensembles', 79.50,
+ 'Sweat col rond et jogging assortis, finition soignée, coupe droite.',
+ '85 % coton, 15 % polyester', 'Lavage en machine à 30 °C.', '{S,M,L,XL,XXL}', '{Noir,Anthracite}', false, 4),
+('ensemble-maille-creme', 'Ensemble maille côtelée', 'Ensembles', 82.50,
+ 'Haut et pantalon en maille côtelée extensible, agréable à porter toute la journée.',
+ '70 % viscose, 25 % polyamide, 5 % élasthanne', 'Lavage délicat à 30 °C, séchage à plat.', '{XS,S,M,L}', '{Écru,Taupe}', true, 5),
+('ensemble-veste-pantalon-beige', 'Ensemble veste et pantalon', 'Ensembles', 84.50,
+ 'Veste légère et pantalon coupe droite assortis, pour une allure soignée sans effort.',
+ '65 % polyester, 33 % viscose, 2 % élasthanne', 'Lavage en machine à 30 °C, repassage doux.', '{S,M,L,XL}', '{Beige,Gris perle}', false, 6),
+('ensemble-sport-technique', 'Ensemble sport technique', 'Ensembles', 92.50,
+ 'Haut et pantalon techniques respirants, pour le sport comme pour la ville.',
+ '88 % polyester, 12 % élasthanne', 'Lavage en machine à 30 °C, sans adoucissant.', '{S,M,L,XL}', '{Noir,Bleu marine}', false, 7),
+('ensemble-maille-fine-camel', 'Ensemble maille fine', 'Ensembles', 94.50,
+ 'Pull en maille fine et pantalon assortis, toucher doux, coupe ajustée.',
+ '50 % coton, 30 % viscose, 20 % polyamide', 'Lavage délicat à 30 °C, séchage à plat.', '{XS,S,M,L,XL}', '{Camel,Écru}', false, 8),
+('ensemble-satin-premium', 'Ensemble satin, haut et pantalon', 'Ensembles', 124.50,
+ 'Haut et pantalon en satin fluide, reflet discret, pour les occasions.',
+ '100 % polyester satiné', 'Lavage délicat à 30 °C, repassage doux à l’envers.', '{XS,S,M,L}', '{Noir,Champagne}', false, 9);
