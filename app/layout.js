@@ -13,7 +13,7 @@ export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: 'Maxi Market — Ensembles assortis pour homme et femme',
   description: 'Des ensembles assortis, élégants et faciles à porter. Livraison offerte en France métropolitaine, retours sous 14 jours.',
-  openGraph: { siteName: 'Maxi Market', locale: 'fr_FR', type: 'website' },
+  openGraph: { siteName: 'Maxi Market', locale: 'fr_FR', type: 'website', images: [{ url: '/accueil/hero-1920.jpg', width: 1920, height: 1081 }] },
 };
 
 export default function RootLayout({ children }) {
@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
     <html lang="fr" className={`${display.variable} ${body.variable}`}>
       <body>
         <CartProvider>
-          <div className="topbar">Livraison offerte en France · Retours sous 14 jours · Rien à payer en ligne</div>
+          <div className="topbar"><span className="hide-sm">Livraison offerte en France · Retours sous 14 jours · Rien à payer en ligne</span><span className="show-sm">Livraison offerte · Retours 14 jours</span></div>
           <header className="nav">
             <Link href="/" className="logo">Maxi Market</Link>
             <nav>
