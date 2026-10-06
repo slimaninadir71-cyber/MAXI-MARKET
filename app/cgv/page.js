@@ -2,7 +2,7 @@ import Link from 'next/link';
 import LegalPage from '../../components/LegalPage';
 import Fill from '../../components/Fill';
 import Mail from '../../components/Mail';
-import { ENTREPRISE as E, MEDIATEUR as M, LIVRAISON as L, RETOURS as R } from '../../lib/entreprise';
+import { ENTREPRISE as E, MEDIATEUR as M, LIVRAISON as L, RETOURS as R, rempli } from '../../lib/entreprise';
 
 export const metadata = { title: 'Conditions générales de vente — Maxi Market', alternates: { canonical: '/cgv' } };
 
@@ -13,7 +13,7 @@ export default function CGV() {
       <p>
         Les présentes conditions s’appliquent aux ventes conclues sur le site {E.site} entre <Fill v={E.raisonSociale} /> (
         <Fill v={E.forme} />, siège : <Fill v={E.adresse} />, SIRET <Fill v={E.siret} />, <Fill v={E.tva} />), ci-après « {E.nomCommercial} »,
-        et toute personne physique qui achète pour ses besoins personnels, ci-après « le client ». Contact : <Mail />, <Fill v={E.telephone} />.
+        et toute personne physique qui achète pour ses besoins personnels, ci-après « le client ». Contact : <Mail />{rempli(E.telephone) && <>, {E.telephone}</>}.
       </p>
       <p>Le client déclare avoir lu et accepté ces conditions avant de passer commande. La version applicable est celle en ligne au jour de la commande.</p>
 
@@ -71,8 +71,7 @@ export default function CGV() {
       </p>
       <p>
         Le client renvoie l’ensemble complet, non porté, non lavé et avec ses étiquettes, au plus tard 14 jours après avoir communiqué sa
-        décision. <strong>Les frais de retour sont à la charge du client</strong>. Ces
-        frais sont estimés à : <Fill v={R.coutRetour} />. La responsabilité du client peut être engagée en cas de dépréciation du produit
+        décision. <strong>Les frais de retour sont à la charge du client</strong>. {rempli(R.coutRetour) ? <>Ces frais sont estimés à : {R.coutRetour}. </> : null}La responsabilité du client peut être engagée en cas de dépréciation du produit
         résultant de manipulations autres que celles nécessaires pour en vérifier la nature, les caractéristiques et le bon fonctionnement (l’essayage est permis, comme en boutique).
       </p>
       <p>
@@ -135,15 +134,17 @@ export default function CGV() {
 
       <h2>9. Service client et réclamations</h2>
       <p>
-        Pour toute question ou réclamation : <Mail /> · <Fill v={E.telephone} />, {E.horaires}. Voir aussi la
+        Pour toute question ou réclamation : <Mail />{rempli(E.telephone) && <> · {E.telephone}</>}, {E.horaires}. Voir aussi la
         page <Link href="/livraison-retours">Livraison et retours</Link>.
       </p>
 
+      {rempli(M.nom) && (<>
       <h2>10. Médiation</h2>
       <p>
         En cas de litige non résolu après une réclamation écrite auprès de {E.nomCommercial}, le client peut recourir gratuitement au médiateur de
         la consommation suivant : <Fill v={M.nom} />, <Fill v={M.adresse} />, <Fill v={M.site} />. Le client reste libre de saisir les tribunaux.
       </p>
+      </>)}
 
       <h2>11. Données personnelles</h2>
       <p>Les données recueillies lors de la commande sont traitées conformément à notre <Link href="/confidentialite">politique de confidentialité</Link>.</p>

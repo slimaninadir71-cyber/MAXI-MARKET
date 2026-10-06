@@ -2,7 +2,7 @@ import Link from 'next/link';
 import LegalPage from '../../components/LegalPage';
 import Fill from '../../components/Fill';
 import Mail from '../../components/Mail';
-import { ENTREPRISE as E, LIVRAISON as L, RETOURS as R } from '../../lib/entreprise';
+import { ENTREPRISE as E, LIVRAISON as L, RETOURS as R, rempli } from '../../lib/entreprise';
 
 export const metadata = {
   title: 'Livraison et retours — Maxi Market',
@@ -38,7 +38,7 @@ export default function LivraisonRetours() {
         <li>Vous pouvez renoncer à votre achat pendant {R.delai} jours à compter de la réception, sans avoir à vous justifier.</li>
         <li>Prévenez-nous par e-mail à <Mail /> avec votre numéro de commande, ou utilisez le formulaire de rétractation figurant dans nos <Link href="/cgv#retractation">CGV</Link>.</li>
         <li>Renvoyez ensuite l’ensemble complet, non porté, non lavé et avec ses étiquettes, dans les 14 jours suivant votre demande. Vous pouvez bien sûr l’essayer, comme en boutique.</li>
-        <li>Les frais de retour restent à votre charge. Leur coût est estimé à : <Fill v={R.coutRetour} />.</li>
+        <li>Les frais de retour restent à votre charge{rempli(R.coutRetour) ? <> (coût estimé : {R.coutRetour})</> : null}.</li>
         <li>Nous vous remboursons l’intégralité du prix payé sous 14 jours après votre demande, avec le même moyen de paiement. Nous pouvons attendre d’avoir reçu les articles, ou une preuve de son expédition, avant de rembourser.</li>
       </ul>
 

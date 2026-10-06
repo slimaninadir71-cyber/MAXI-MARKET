@@ -2,7 +2,7 @@ import Link from 'next/link';
 import LegalPage from '../../components/LegalPage';
 import Fill from '../../components/Fill';
 import Mail from '../../components/Mail';
-import { ENTREPRISE as E, HEBERGEUR as H } from '../../lib/entreprise';
+import { ENTREPRISE as E, HEBERGEUR as H, rempli } from '../../lib/entreprise';
 
 export const metadata = { title: 'Mentions légales — Maxi Market', alternates: { canonical: '/mentions-legales' } };
 
@@ -15,7 +15,7 @@ export default function MentionsLegales() {
         Siège : <Fill v={E.adresse} /><br />
         SIRET : <Fill v={E.siret} /> · <Fill v={E.rcs} /><br />
         TVA : <Fill v={E.tva} /><br />
-        E-mail : <Mail /> · Téléphone : <Fill v={E.telephone} />
+        E-mail : <Mail />{rempli(E.telephone) && <> · Téléphone : {E.telephone}</>}
       </p>
       <p>Directeur de la publication : <Fill v={E.directeurPublication} />.</p>
 
