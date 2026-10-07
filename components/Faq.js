@@ -5,7 +5,7 @@ const mail = (e) => (rempli(e) ? <a href={`mailto:${e}`}>{e}</a> : 'notre adress
 
 export default function Faq({ title = 'Vos questions' }) {
   const list = [
-    { q: 'Quand est-ce que je paie ?', a: <>Pas maintenant. Après votre commande, nous vous contactons sous 24 h pour la confirmer et vous indiquer comment régler. Votre colis part dès réception du paiement.</> },
+    { q: 'Comment se passe le paiement ?', a: <>À la fin de votre commande, vous êtes redirigé vers la page sécurisée de notre partenaire de paiement Mollie (carte bancaire, Apple Pay…). Nous ne voyons jamais vos données bancaires. Votre colis part dès le paiement confirmé.</> },
     { q: 'Combien de temps pour être livré ?', a: <>Votre commande est expédiée sous {L.expedition} après le paiement et arrive en {L.delai}. La livraison est offerte en {L.zone}.</> },
     { q: 'Comment choisir ma taille ?', a: <>Chaque ensemble est vendu dans une seule taille pour le haut et le bas. Consultez le <Link href="/guide-des-tailles">guide des tailles</Link> et, entre deux tailles, prenez la plus grande pour plus d’aisance.</> },
     { q: 'Puis-je retourner ma commande ?', a: <>Oui, vous avez {R.delai} jours après réception pour vous rétracter, sans justification. L’ensemble doit être non porté, non lavé et dans son état d’origine. Détails sur la page <Link href="/livraison-retours">Livraison et retours</Link>.</> },

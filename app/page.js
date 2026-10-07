@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import ProductCard from '../components/ProductCard';
 import Faq from '../components/Faq';
-import { Truck, Phone, Return, Hanger } from '../components/Icons';
+import { Truck, Lock, Return, Hanger } from '../components/Icons';
 import { getProducts } from '../lib/supabase';
 import { eur } from '../lib/format';
 import { LIVRAISON, RETOURS } from '../lib/entreprise';
@@ -53,7 +53,7 @@ export default async function Home() {
 
       <ul className="proofs" aria-label="Nos engagements">
         <li><Truck /><span><strong>Livraison offerte</strong>expédiée sous {LIVRAISON.expedition}, reçue en {LIVRAISON.delai}</span></li>
-        <li><Phone /><span><strong>Rien à payer en ligne</strong>vous réglez après notre appel de confirmation</span></li>
+        <li><Lock /><span><strong>Paiement sécurisé</strong>carte bancaire, Apple Pay, via notre partenaire Mollie</span></li>
         <li><Return /><span><strong>{RETOURS.delai} jours pour changer d’avis</strong>retour possible dès la réception</span></li>
         <li><Hanger /><span><strong>Haut et bas assortis</strong>une seule taille à choisir, aucun risque de se tromper</span></li>
       </ul>
@@ -74,12 +74,12 @@ export default async function Home() {
       <section className="home-sec why"><div className="wrap">
         <div className="sec-head">
           <h2>Commander, c’est simple</h2>
-          <p>Aucun paiement en ligne : on se parle d’abord, on expédie ensuite.</p>
+          <p>Sans créer de compte, en moins de deux minutes.</p>
         </div>
         <ol className="why-grid steps3">
           <li><span className="num">01</span><h3>Choisissez</h3><p>Votre ensemble et votre taille. Le haut et le bas sont déjà assortis.</p></li>
-          <li><span className="num">02</span><h3>Commandez</h3><p>Laissez vos coordonnées en une minute, sans créer de compte.</p></li>
-          <li><span className="num">03</span><h3>Recevez</h3><p>Nous vous appelons pour confirmer, puis votre colis part sous {LIVRAISON.expedition}.</p></li>
+          <li><span className="num">02</span><h3>Payez en sécurité</h3><p>Laissez votre adresse, puis réglez par carte sur la page sécurisée de Mollie.</p></li>
+          <li><span className="num">03</span><h3>Recevez</h3><p>Votre colis part sous {LIVRAISON.expedition}, livraison offerte en {LIVRAISON.delai}.</p></li>
         </ol>
       </div></section>
 

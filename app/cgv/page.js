@@ -33,19 +33,20 @@ export default function CGV() {
       <h2>4. Commande</h2>
       <p>
         Le client ajoute les produits à son panier, renseigne ses coordonnées et son adresse de livraison, accepte les présentes conditions puis
-        valide en cliquant sur « Passer commande », ce qui l’engage à payer la commande une fois celle-ci confirmée. Un numéro de commande s’affiche et un récapitulatif est envoyé par e-mail.
+        valide en cliquant sur le bouton « Payer », ce qui vaut commande avec obligation de paiement. Il est alors redirigé vers la page de
+        paiement sécurisée. La vente est conclue lorsque le paiement est accepté : un numéro de commande s’affiche et un récapitulatif est envoyé
+        par e-mail. Si le paiement n’aboutit pas, la commande n’est pas validée et le client peut réessayer.
       </p>
       <p>
-        {E.nomCommercial} contacte le client sous 24 heures ouvrées pour confirmer la commande et organiser le paiement. La vente est conclue à
-        l’envoi de cette confirmation. Sans paiement sous 7 jours après la confirmation, la commande peut être annulée sans frais pour le client.
-        {E.nomCommercial} peut refuser une commande en cas de litige antérieur avec le client ou d’adresse de livraison hors zone.
+        {E.nomCommercial} peut refuser ou annuler une commande en cas de litige antérieur avec le client, d’adresse de livraison hors zone ou
+        d’indisponibilité du produit ; le client est alors intégralement remboursé.
       </p>
 
       <h2>5. Paiement</h2>
       <p>
-        Le paiement s’effectue en totalité, selon les moyens proposés lors de la confirmation (carte bancaire par lien de paiement sécurisé ou
-        virement bancaire). La commande n’est expédiée qu’après réception du paiement. Les données bancaires sont traitées par l’établissement de
-        paiement et ne sont jamais conservées par {E.nomCommercial}.
+        Le prix est payable en totalité à la commande, par carte bancaire ou par les autres moyens proposés sur la page de paiement. Le paiement
+        est traité par la société Mollie B.V., établissement de paiement agréé ; les données bancaires sont chiffrées et ne sont jamais
+        communiquées à {E.nomCommercial}. La commande est expédiée après confirmation du paiement.
       </p>
 
       <h2>6. Livraison</h2>

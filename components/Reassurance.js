@@ -3,7 +3,7 @@ import { LIVRAISON, RETOURS } from '../lib/entreprise';
 
 const ITEMS = (L, R) => [
   { t: 'Livraison offerte', d: `Expédié sous ${L.expedition}, reçu en ${L.delai}.` },
-  { t: 'Rien à payer en ligne', d: 'Vous réglez après notre appel de confirmation.' },
+  { t: 'Paiement sécurisé', d: 'Carte bancaire ou Apple Pay, via Mollie.' },
   { t: `Retours sous ${R.delai} jours`, d: 'À compter de la réception.', href: '/livraison-retours' },
 ];
 

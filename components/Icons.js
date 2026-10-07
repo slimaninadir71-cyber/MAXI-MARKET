@@ -12,3 +12,6 @@ export const Return = () => (
 export const Hanger = () => (
   <svg {...base}><path d="M14 8.5a2.5 2.5 0 1 0-2.5-2.5" /><path d="M14 8.5v2L3.5 19.5a1.5 1.5 0 0 0 1 2.6h19a1.5 1.5 0 0 0 1-2.6L14 10.5" /></svg>
 );
+export const Lock = () => (
+  <svg {...base}><rect x="5.5" y="12.5" width="17" height="11" rx="1.5" /><path d="M9.5 12.5V9a4.5 4.5 0 0 1 9 0v3.5" /></svg>
+);

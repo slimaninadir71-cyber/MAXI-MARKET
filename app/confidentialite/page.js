@@ -15,7 +15,7 @@ export default function Confidentialite() {
       <p>
         Lors d’une commande : nom, téléphone, adresse e-mail, adresse de livraison, précisions de livraison facultatives et contenu de la
         commande. Lorsque vous nous écrivez : le contenu de vos messages. Nous ne collectons aucune donnée bancaire : le paiement est traité par
-        l’établissement de paiement.
+        l’établissement de paiement Mollie B.V.
       </p>
 
       <h2>Pourquoi et sur quelle base</h2>
@@ -36,7 +36,7 @@ export default function Confidentialite() {
       <p>
         Vos données sont réservées à {E.nomCommercial} et à ses prestataires, dans la limite de leur mission : le transporteur (nom, téléphone et
         adresse de livraison), l’hébergeur du site ({H.nom}), le service de base de données (Supabase), le service d’envoi d’e-mails (Resend) et
-        l’établissement de paiement. Certains de ces prestataires sont situés aux États-Unis ; ces transferts sont encadrés par le cadre de
+        l’établissement de paiement Mollie B.V. Certains de ces prestataires sont situés aux États-Unis ; ces transferts sont encadrés par le cadre de
         protection des données UE–États-Unis ou par les clauses contractuelles types de la Commission européenne.
       </p>
 

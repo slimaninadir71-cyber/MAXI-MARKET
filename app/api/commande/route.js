@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
-import { sendOrderEmails } from '../../../lib/mail';
+import { adminDb, createPayment, siteOrigin } from '../../../lib/serveur';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -12,7 +11,7 @@ export async function POST(req) {
   let body;
   try { body = await req.json(); } catch { return bad('Requête invalide.'); }
 
-  if (body.website) return NextResponse.json({ ok: true, reference: '' }); // anti-spam : champ piège rempli
+  if (body.website) return bad('Requête invalide.'); // anti-spam : champ piège rempli
 
   const customer = {
     full_name: text(body.full_name, 120), phone: text(body.phone, 40), email: text(body.email, 160),
@@ -29,26 +28,26 @@ export async function POST(req) {
     .filter((i) => i.slug && i.size);
   if (items.length === 0) return bad('Votre panier est vide.');
 
-  const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY);
+  let db;
+  try { db = adminDb(); } catch (e) { console.error(e.message); return bad('Le paiement n’est pas encore configuré. Réessayez plus tard.', 500); }
 
-  const { data: products, error: pErr } = await supabase.from('products').select('slug,name,price').in('slug', items.map((i) => i.slug));
-  if (pErr || !products?.length) return bad('Produits introuvables. Actualisez la page.');
-  const bySlug = Object.fromEntries(products.map((p) => [p.slug, p]));
-  const lines = items.filter((i) => bySlug[i.slug]).map((i) => ({ ...i, name: bySlug[i.slug].name, price: Number(bySlug[i.slug].price) }));
-  if (lines.length === 0) return bad('Produits introuvables. Actualisez la page.');
-
-  const { data: reference, error } = await supabase.rpc('create_order', {
+  // La base recalcule elle-même les prix et le total : le navigateur ne peut pas les modifier.
+  const { data: reference, error } = await db.rpc('create_order', {
     p_full_name: customer.full_name, p_phone: customer.phone, p_email: customer.email, p_address: customer.address,
-    p_postal_code: customer.postal_code, p_city: customer.city, p_notes: customer.notes,
-    p_items: lines.map((l) => ({ slug: l.slug, size: l.size, color: l.color, quantity: l.quantity })),
+    p_postal_code: customer.postal_code, p_city: customer.city, p_notes: customer.notes, p_items: items,
   });
   if (error || !reference) {
     console.error('create_order :', error?.message);
-    return bad('Impossible d’enregistrer la commande pour le moment. Réessayez dans un instant.', 500);
+    return bad('Impossible d’enregistrer la commande. Vérifiez votre panier et réessayez.', 500);
   }
 
-  const total = lines.reduce((s, l) => s + l.price * l.quantity, 0);
-  await sendOrderEmails({ reference, customer, lines, total }).catch((e) => console.error('Mail :', e?.message));
-
-  return NextResponse.json({ ok: true, reference });
+  const { data: order } = await db.from('orders').select('id,reference,token,total_price').eq('reference', reference).single();
+  try {
+    const checkoutUrl = await createPayment(order, siteOrigin(req));
+    if (!checkoutUrl) throw new Error('Pas de lien de paiement');
+    return NextResponse.json({ ok: true, reference, checkoutUrl });
+  } catch (e) {
+    console.error('Paiement :', e.message);
+    return bad('Le paiement est momentanément indisponible. Réessayez dans un instant.', 502);
+  }
 }

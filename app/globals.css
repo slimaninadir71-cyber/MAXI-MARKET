@@ -269,3 +269,4 @@ mark.todo{background:#FFE9B8;color:#5a3a08;padding:0 .25rem}
   .hero-shade{background:linear-gradient(180deg,rgba(10,12,15,0) 30%,rgba(10,12,15,.8) 100%)}
   .row-head{flex-direction:column;align-items:flex-start;gap:.6rem}
 }
+.ok.warn{border-color:#B7791F}

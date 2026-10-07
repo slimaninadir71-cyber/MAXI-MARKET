@@ -45,7 +45,7 @@ export default function Panier() {
             {saving > 0 && <p className="row-sum save"><span>Vous économisez</span><strong>{eur(saving)}</strong></p>}
             <p className="row-sum total"><span>Total</span><strong>{eur(total)}</strong></p>
             <Link className="btn btn-block" href="/commande">Passer commande</Link>
-            <p className="muted small center">Rien à payer maintenant : nous vous appelons pour confirmer.</p>
+            <p className="muted small center">Paiement 100 % sécurisé par carte bancaire.</p>
             <Reassurance compact />
             <Link className="linkbtn" href="/produits">Continuer mes achats</Link>
           </aside>

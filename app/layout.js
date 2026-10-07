@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
     <html lang="fr" className={`${display.variable} ${body.variable}`}>
       <body>
         <CartProvider>
-          <div className="topbar"><span className="hide-sm">Livraison offerte en France · Retours sous 14 jours · Rien à payer en ligne</span><span className="show-sm">Livraison offerte · Retours 14 jours</span></div>
+          <div className="topbar"><span className="hide-sm">Livraison offerte en France · Retours sous 14 jours · Paiement sécurisé</span><span className="show-sm">Livraison offerte · Retours 14 jours</span></div>
           <header className="nav">
             <Link href="/" className="logo">Maxi Market</Link>
             <nav>
